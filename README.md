@@ -4,7 +4,7 @@ Luang is the fusion of `Lua` and `Lang`, it is a simple library that uses the fl
 Look at `examples/` to understand the usage.
 
 
-= Getting started
+# Getting started
 
 ```lua
 -- lib
@@ -14,7 +14,7 @@ local Luang = require("Luang")
 local tr = Luang()
 ```
 
-= Lang methods/properties
+# Lang methods/properties
 
 ```lua
 -- load a dict table to the lang dict
