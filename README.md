@@ -17,12 +17,37 @@ local tr = Luang()
 # Lang methods/properties
 
 ```lua
--- load a dict table to the lang dict
-Lang:load(dict)
+-- load a dict table to the lang dict (merge into the internal dict)
+-- dict: table with sub-tables and strings
+tr:load(dict)
 
--- load a dict table to the lang dict for a specific locale (concretely, it's a prefix)
-Lang:loadLocale(locale, dict)
+-- load a dict table to the lang dict for a specific locale
+-- equivalent to tr:load({[locale] = dict})
+-- dict: table with sub-tables and strings
+-- locale: prefix
+tr:loadLocale(locale, dict)
 
 -- lang access property
-Lang.lang
+tr.lang
+
+-- access translation
+-- args: table used to replace {keys} with values in the translation string (can be nil)
+tr.lang.foo.bar(args)
+```
+
+# Example
+
+```lua
+tr:load({
+  foo = {
+    bar = "first {1} second {2} test {test}",
+    foo = "foo"
+  }
+})
+
+-- ex: cache foo access for better performances
+local foo = tr.lang.foo
+
+print(foo.bar({"1st", "2nd", test = "TEST"})) -- "first 1st second 2nd test TEST" 
+print(foo.foo()) -- "foo"
 ```
