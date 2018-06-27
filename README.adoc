@@ -4,19 +4,21 @@ Luang is the fusion of `Lua` and `Lang`, it is a simple library that uses the fl
 Look at `examples/` to understand the usage.
 
 
-# Getting started
+== Getting started
 
-```lua
+[source,lua]
+----
 -- lib
 local Luang = require("Luang")
 
 -- create Lang object (or "translator")
 local tr = Luang()
-```
+----
 
-# Lang methods/properties
+== Lang methods/properties
 
-```lua
+[source,lua]
+----
 -- load a dict table to the lang dict (merge into the internal dict)
 -- dict: table with sub-tables and strings
 tr:load(dict)
@@ -33,11 +35,12 @@ tr.lang
 -- access translation
 -- args: table used to replace {keys} with values in the translation string (can be nil)
 tr.lang.foo.bar(args)
-```
+----
 
-# Example
+== Example
 
-```lua
+[source,lua]
+----
 tr:load({
   foo = {
     bar = "first {1} second {2} test {test}",
@@ -50,4 +53,4 @@ local foo = tr.lang.foo
 
 print(foo.bar({"1st", "2nd", test = "TEST"})) -- "first 1st second 2nd test TEST" 
 print(foo.foo()) -- "foo"
-```
+----
